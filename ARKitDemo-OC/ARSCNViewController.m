@@ -12,9 +12,6 @@
 //ARKit框架
 #import <ARKit/ARKit.h>
 
-#define screenWidth [UIScreen mainScreen].bounds.size.width
-#define screenHeight [UIScreen mainScreen].bounds.size.height
-
 @interface ARSCNViewController ()<ARSCNViewDelegate,ARSessionDelegate>
 {
     BOOL addedNode;
@@ -32,24 +29,24 @@
 @property(nonatomic, strong) SCNNode *sunNode;
 @property(nonatomic, strong) SCNNode *earthNode;
 @property(nonatomic, strong) SCNNode *moonNode;
-@property(nonatomic, strong) SCNNode *marsNode; //火星
-@property(nonatomic, strong) SCNNode *mercuryNode;//水星
-@property(nonatomic, strong) SCNNode *venusNode;//金星
-@property(nonatomic, strong) SCNNode *jupiterNode; //木星
-@property(nonatomic, strong) SCNNode *jupiterLoopNode; //木星环
-@property(nonatomic, strong) SCNNode *jupiterGroupNode;//木星环
-@property(nonatomic, strong) SCNNode *saturnNode; //土星
-@property(nonatomic, strong) SCNNode *saturnLoopNode; //土星环
-@property(nonatomic, strong) SCNNode *sartunGruopNode;//土星Group
-@property(nonatomic, strong) SCNNode *uranusNode; //天王星
-@property(nonatomic, strong) SCNNode *uranusLoopNode; //天王星环
-@property(nonatomic, strong) SCNNode *uranusGroupNode; //天王星Group
-@property(nonatomic, strong) SCNNode *neptuneNode; //海王星
-@property(nonatomic, strong) SCNNode *neptuneLoopNode; //海王星环
-@property(nonatomic, strong) SCNNode *neptuneGroupNode; //海王星Group
-@property(nonatomic, strong) SCNNode *plutoNode; //冥王星
-@property(nonatomic, strong) SCNNode *earthGroupNode;
-@property(nonatomic, strong) SCNNode *sunHaloNode;
+@property(nonatomic, strong) SCNNode *marsNode;  // 火星
+@property(nonatomic, strong) SCNNode *mercuryNode;  // 水星
+@property(nonatomic, strong) SCNNode *venusNode;  // 金星
+@property(nonatomic, strong) SCNNode *jupiterNode;  // 木星
+@property(nonatomic, strong) SCNNode *jupiterLoopNode;  // 木星环
+@property(nonatomic, strong) SCNNode *jupiterGroupNode;  // 木星环group
+@property(nonatomic, strong) SCNNode *saturnNode;  // 土星
+@property(nonatomic, strong) SCNNode *saturnLoopNode;  // 土星环
+@property(nonatomic, strong) SCNNode *sartunGruopNode;  // 土星Group
+@property(nonatomic, strong) SCNNode *uranusNode;  // 天王星
+@property(nonatomic, strong) SCNNode *uranusLoopNode;  // 天王星环
+@property(nonatomic, strong) SCNNode *uranusGroupNode;  // 天王星Group
+@property(nonatomic, strong) SCNNode *neptuneNode;  // 海王星
+@property(nonatomic, strong) SCNNode *neptuneLoopNode;  // 海王星环
+@property(nonatomic, strong) SCNNode *neptuneGroupNode;  // 海王星Group
+@property(nonatomic, strong) SCNNode *plutoNode;  // 冥王星
+@property(nonatomic, strong) SCNNode *earthGroupNode;  // 地球group
+@property(nonatomic, strong) SCNNode *sunHaloNode;  //太阳光环
 
 @end
 
@@ -93,6 +90,7 @@
     _neptuneNode = [SCNNode new];  // 海王星
     _plutoNode = [SCNNode new];  // 冥王星
     
+    // 设置geometry
     _sunNode.geometry = [SCNSphere sphereWithRadius:0.25];
     _mercuryNode.geometry = [SCNSphere sphereWithRadius:0.02];
     _venusNode.geometry = [SCNSphere sphereWithRadius:0.04];
@@ -105,12 +103,11 @@
     _neptuneNode.geometry = [SCNSphere sphereWithRadius:0.08];
     _plutoNode.geometry = [SCNSphere sphereWithRadius:0.04];
     
-    _moonNode.position = SCNVector3Make(0.1, 0, 0);
+    // 设置groupNode
     [_earthGroupNode addChildNode:_earthNode];
-    
     [_sartunGruopNode addChildNode:_saturnNode];
     
-    //添加土星环
+    // 添加土星环
     SCNNode *saturnLoopNode = [SCNNode new];
     saturnLoopNode.opacity = 0.4;
     saturnLoopNode.geometry = [SCNBox boxWithWidth:0.6 height:0 length:0.6 chamferRadius:0];
@@ -120,17 +117,18 @@
     saturnLoopNode.geometry.firstMaterial.lightingModelName = SCNLightingModelConstant; // no lighting
     [_sartunGruopNode addChildNode:saturnLoopNode];
     
+    // 设置position
+    _sunNode.position = SCNVector3Make(0, -0.1, 3);
     _mercuryNode.position = SCNVector3Make(0.4, 0, 0);
     _venusNode.position = SCNVector3Make(0.6, 0, 0);
     _earthGroupNode.position = SCNVector3Make(0.8, 0, 0);
+    _moonNode.position = SCNVector3Make(0.1, 0, 0);
     _marsNode.position = SCNVector3Make(1.0, 0, 0);
     _jupiterNode.position = SCNVector3Make(1.4, 0, 0);
     _sartunGruopNode.position = SCNVector3Make(1.68, 0, 0);
     _uranusNode.position = SCNVector3Make(1.95, 0, 0);
     _neptuneNode.position = SCNVector3Make(2.14, 0, 0);
     _plutoNode.position = SCNVector3Make(2.319, 0, 0);
-    
-    [_sunNode setPosition:SCNVector3Make(0, -0.1, 3)];
     
     [scnView.scene.rootNode addChildNode:_sunNode];
     
@@ -169,17 +167,17 @@
     _sunNode.geometry.firstMaterial.multiply.wrapT =
     _sunNode.geometry.firstMaterial.diffuse.wrapT  = SCNWrapModeRepeat;
     
+    _sunNode.geometry.firstMaterial.locksAmbientWithDiffuse   =
     _mercuryNode.geometry.firstMaterial.locksAmbientWithDiffuse =
     _venusNode.geometry.firstMaterial.locksAmbientWithDiffuse =
-    _marsNode.geometry.firstMaterial.locksAmbientWithDiffuse =
     _earthNode.geometry.firstMaterial.locksAmbientWithDiffuse =
     _moonNode.geometry.firstMaterial.locksAmbientWithDiffuse  =
+    _marsNode.geometry.firstMaterial.locksAmbientWithDiffuse =
     _jupiterNode.geometry.firstMaterial.locksAmbientWithDiffuse  =
     _saturnNode.geometry.firstMaterial.locksAmbientWithDiffuse  =
     _uranusNode.geometry.firstMaterial.locksAmbientWithDiffuse  =
     _neptuneNode.geometry.firstMaterial.locksAmbientWithDiffuse  =
-    _plutoNode.geometry.firstMaterial.locksAmbientWithDiffuse  =
-    _sunNode.geometry.firstMaterial.locksAmbientWithDiffuse   = YES;
+    _plutoNode.geometry.firstMaterial.locksAmbientWithDiffuse  = YES;
     
     _mercuryNode.geometry.firstMaterial.shininess =
     _venusNode.geometry.firstMaterial.shininess =
@@ -214,6 +212,7 @@
 #pragma mark - Animation
 - (void)roationNode
 {
+    // earth 自转
     [_earthNode runAction:[SCNAction repeatActionForever:[SCNAction rotateByX:0 y:2 z:0 duration:1]]];   //地球自转
     
     // Rotate the moon
@@ -567,6 +566,7 @@
     [_sunNode setPosition:SCNVector3Make(-3 * frame.camera.transform.columns[3].x, -0.1 - 3 * frame.camera.transform.columns[3].y, -2 - 3 * frame.camera.transform.columns[3].z)];
 }
 
+#pragma mark - ARSCNViewDelegate
 - (void)renderer:(id<SCNSceneRenderer>)renderer didAddNode:(SCNNode *)node forAnchor:(ARAnchor *)anchor
 {
     NSLog(@"/n*** 找到了新的平面 *** \n");

@@ -24,6 +24,8 @@
 		845922321F96F814002E10A5 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 845922271F96F814002E10A5 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		845922331F96F814002E10A5 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 845922291F96F814002E10A5 /* View+MASAdditions.m */; };
 		845922371F96F938002E10A5 /* ARSCNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845922361F96F938002E10A5 /* ARSCNViewController.m */; };
+		845FB4DF1F9882A200ECD1D9 /* FMARSCNViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FB4DE1F9882A200ECD1D9 /* FMARSCNViewController.m */; };
+		845FB4E21F9886A700ECD1D9 /* FMARSCNViewCotrol.m in Sources */ = {isa = PBXBuildFile; fileRef = 845FB4E11F9886A700ECD1D9 /* FMARSCNViewCotrol.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +66,10 @@
 		845922341F96F82D002E10A5 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		845922351F96F938002E10A5 /* ARSCNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ARSCNViewController.h; sourceTree = "<group>"; };
 		845922361F96F938002E10A5 /* ARSCNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ARSCNViewController.m; sourceTree = "<group>"; };
+		845FB4DD1F9882A200ECD1D9 /* FMARSCNViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMARSCNViewController.h; sourceTree = "<group>"; };
+		845FB4DE1F9882A200ECD1D9 /* FMARSCNViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMARSCNViewController.m; sourceTree = "<group>"; };
+		845FB4E01F9886A700ECD1D9 /* FMARSCNViewCotrol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FMARSCNViewCotrol.h; sourceTree = "<group>"; };
+		845FB4E11F9886A700ECD1D9 /* FMARSCNViewCotrol.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FMARSCNViewCotrol.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +111,10 @@
 				845921FE1F96F74F002E10A5 /* ViewController.m */,
 				845922351F96F938002E10A5 /* ARSCNViewController.h */,
 				845922361F96F938002E10A5 /* ARSCNViewController.m */,
+				845FB4DD1F9882A200ECD1D9 /* FMARSCNViewController.h */,
+				845FB4DE1F9882A200ECD1D9 /* FMARSCNViewController.m */,
+				845FB4E01F9886A700ECD1D9 /* FMARSCNViewCotrol.h */,
+				845FB4E11F9886A700ECD1D9 /* FMARSCNViewCotrol.m */,
 				845922001F96F74F002E10A5 /* Main.storyboard */,
 				845922031F96F74F002E10A5 /* Assets.xcassets */,
 				845922051F96F74F002E10A5 /* LaunchScreen.storyboard */,
@@ -231,6 +241,8 @@
 				845922311F96F814002E10A5 /* NSArray+MASAdditions.m in Sources */,
 				845921FF1F96F74F002E10A5 /* ViewController.m in Sources */,
 				8459220A1F96F74F002E10A5 /* main.m in Sources */,
+				845FB4E21F9886A700ECD1D9 /* FMARSCNViewCotrol.m in Sources */,
+				845FB4DF1F9882A200ECD1D9 /* FMARSCNViewController.m in Sources */,
 				8459222E1F96F814002E10A5 /* MASLayoutConstraint.m in Sources */,
 				845921FC1F96F74F002E10A5 /* AppDelegate.m in Sources */,
 				845922331F96F814002E10A5 /* View+MASAdditions.m in Sources */,

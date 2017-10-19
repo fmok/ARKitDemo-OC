@@ -8,6 +8,7 @@
 
 #import "ViewController.h"
 #import "ARSCNViewController.h"
+#import "FMARSCNViewController.h"
 
 @interface ViewController ()
 
@@ -31,8 +32,13 @@
 #pragma mark - Events
 - (void)clickStart:(UIButton *)sender
 {
+#if 1
     ARSCNViewController *scnVC = [[ARSCNViewController alloc] init];
     [self.navigationController pushViewController:scnVC animated:YES];
+#else
+    FMARSCNViewController *scnVC = [[FMARSCNViewController alloc] init];
+    [self.navigationController pushViewController:scnVC animated:YES];
+#endif
 }
 
 #pragma mark - getter
