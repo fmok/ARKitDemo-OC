@@ -20,7 +20,7 @@
     BOOL addedNode;
 }
 //AR视图：展示3D界面
-@property (nonatomic, strong)ARSCNView *arRightView;
+@property (nonatomic, strong)ARSCNView *arSCNView;
 
 //AR会话，负责管理相机追踪配置及3D相机坐标
 @property(nonatomic,strong)ARSession *arSession;
@@ -60,7 +60,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.arRightView];
+    [self.view addSubview:self.arSCNView];
     [self initNode];
 }
 
@@ -74,7 +74,7 @@
 - (void)initNode
 {
     addedNode = YES;
-    [self initNodeWithRootView:_arRightView];
+    [self initNodeWithRootView:_arSCNView];
 }
 
 - (void)initNodeWithRootView:(SCNView *) scnView
@@ -569,26 +569,24 @@
 
 - (void)renderer:(id<SCNSceneRenderer>)renderer didAddNode:(SCNNode *)node forAnchor:(ARAnchor *)anchor
 {
-    NSLog(@"找到了新的平面");
-    //    if (!addedNode) {
-    //        [self initNode];
-    //    }
+    NSLog(@"/n*** 找到了新的平面 *** \n");
+//    if (!addedNode) {
+//        [self initNode];
+//    }
 }
 
 #pragma mark - getter
 - (ARWorldTrackingConfiguration *)arSessionConfiguration
 {
-    if (_arSessionConfiguration != nil) {
-        return _arSessionConfiguration;
+    if (!_arSessionConfiguration) {
+        //1.创建世界追踪会话配置（使用ARWorldTrackingSessionConfiguration效果更加好），需要A9芯片支持
+        ARWorldTrackingConfiguration *configuration = [[ARWorldTrackingConfiguration alloc] init];
+        //2.设置追踪方向（追踪平面，后面会用到）
+        configuration.planeDetection = ARPlaneDetectionHorizontal;
+        _arSessionConfiguration = configuration;
+        //3.自适应灯光（相机从暗到强光快速过渡效果会平缓一些）
+        _arSessionConfiguration.lightEstimationEnabled = YES;
     }
-    
-    //1.创建世界追踪会话配置（使用ARWorldTrackingSessionConfiguration效果更加好），需要A9芯片支持
-    ARWorldTrackingConfiguration *configuration = [[ARWorldTrackingConfiguration alloc] init];
-    //2.设置追踪方向（追踪平面，后面会用到）
-    configuration.planeDetection = ARPlaneDetectionHorizontal;
-    _arSessionConfiguration = configuration;
-    //3.自适应灯光（相机从暗到强光快速过渡效果会平缓一些）
-    _arSessionConfiguration.lightEstimationEnabled = YES;
     return _arSessionConfiguration;
 }
 
@@ -601,15 +599,15 @@
     return _arSession;
 }
 
-- (ARSCNView *)arRightView {
-    
-    if (!_arRightView) {
-        _arRightView = [[ARSCNView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
-        _arRightView.session = self.arSession;
-        _arRightView.automaticallyUpdatesLighting = YES;
-        _arRightView.delegate = self;
+- (ARSCNView *)arSCNView
+{
+    if (!_arSCNView) {
+        _arSCNView = [[ARSCNView alloc] initWithFrame:CGRectMake(0, 0, screenWidth, screenHeight)];
+        _arSCNView.session = self.arSession;
+        _arSCNView.automaticallyUpdatesLighting = YES;
+        _arSCNView.delegate = self;
     }
-    return _arRightView;
+    return _arSCNView;
 }
 
 
