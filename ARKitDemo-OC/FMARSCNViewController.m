@@ -32,6 +32,12 @@
     [self.arSession runWithConfiguration:self.arWorldTrackingConfiguration options:ARSessionRunOptionResetTracking];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.arSession pause];
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -91,6 +97,7 @@
         _arSCNView.session = self.arSession;
         _arSCNView.automaticallyUpdatesLighting = YES;
         _arSCNView.delegate = self.control;
+        _arSCNView.showsStatistics = YES;
     }
     return _arSCNView;
 }

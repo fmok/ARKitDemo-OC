@@ -32,10 +32,10 @@
 #pragma mark - Events
 - (void)clickStart:(UIButton *)sender
 {
-#if 1
+#if 0  // 第一版
     ARSCNViewController *scnVC = [[ARSCNViewController alloc] init];
     [self.navigationController pushViewController:scnVC animated:YES];
-#else
+#else  // 重构ing
     FMARSCNViewController *scnVC = [[FMARSCNViewController alloc] init];
     [self.navigationController pushViewController:scnVC animated:YES];
 #endif

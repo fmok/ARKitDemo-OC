@@ -67,6 +67,12 @@
     [self.arSession runWithConfiguration:self.arSessionConfiguration];
 }
 
+- (void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    [self.arSession pause];
+}
+
 #pragma mark - Private methods
 - (void)initNode
 {
@@ -606,6 +612,7 @@
         _arSCNView.session = self.arSession;
         _arSCNView.automaticallyUpdatesLighting = YES;
         _arSCNView.delegate = self;
+        _arSCNView.showsStatistics = YES;
     }
     return _arSCNView;
 }
